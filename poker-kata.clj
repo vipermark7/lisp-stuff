@@ -1,4 +1,7 @@
 ;; https://codingdojo.org/kata/PokerHands/
+(ns poker
+  (:require [clojure.string :as str]))
+
 (def suits ["C" "H" "D" "S"])
 (def values ["2" "3" "4" "5" "6" "7" "8" "9" "T" "J" "Q" "K" "A"])
 
@@ -6,13 +9,22 @@
 
 ;; created a custom function to get values so we can be sure we're dealing with vectors and not
 ;; some other kind of sequence
+
+(defn make-cards-from-string
+  "takes a string of cards and makes it into lists (2H -> )"
+  [cards]
+  (mapv #(hash-map
+          (get (str/split % #"") 0)
+          (get (str/split % #"") 1))
+     cards))
+
 (defn get-values
   "get values from a map of cards"
   [cards]
   (mapv val cards))
-(+ 1 1 ) 
 
-(defn dups [seq]
+(defn dups
+  [seq]
   (for [[id freq] (frequencies seq)  ;; get the frequencies, destructure
         :when (> freq 1)]            ;; this is the filter condition
     id))
