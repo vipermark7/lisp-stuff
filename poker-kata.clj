@@ -23,6 +23,10 @@
   [cards]
   (mapv val cards))
 
+(defn get-suits
+  [cards]
+  (mapv suit cards))
+
 (defn dups
   [seq]
   (for [[id freq] (frequencies seq)  ;; get the frequencies, destructure
@@ -52,7 +56,8 @@
     (= 4 (- (last vals) (first vals)))))
 
 (defn flush? [])
-
+"A flush is a hand that contains five cards all of the same suitinnon-sequential rank"
+(and ())
 (defn full-house? [])
 
 (defn four-of-a-kind? [])
